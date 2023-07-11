@@ -45,6 +45,9 @@ type InitializeOptions struct {
 // run a build we will start the builds and then the core of Packer handles
 // execution.
 type Handler interface {
+	// PreInitialize is used only for HCL2 templates, and loads required
+	// plugins if specified.
+	PreInitialize() hcl.Diagnostics
 	Initialize(InitializeOptions) hcl.Diagnostics
 	// PluginRequirements returns the list of plugin Requirements from the
 	// config file.
